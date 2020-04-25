@@ -1,0 +1,74 @@
+@mixin arrow($width: 10px, $height: 1px, $color: black, $direction: left) {
+  background-color: $color;
+  display: inline-block;
+  height: $height;
+  position: relative;
+  width: $width;
+
+  &::before,
+  &::after {
+    background-color: $color;
+    content: '';
+    height: $height;
+    position: absolute;
+    width: $width / 2;
+  }
+
+  @if ($direction == left) {
+    &::before,
+    &::after {
+      left: -$width / 4;
+    }
+
+    &::before {
+      transform: rotate(45deg) translateX($width / 4 - $height / 2);
+    }
+
+    &::after {
+      transform: rotate(-45deg) translateX($width / 4 - $height / 2);
+    }
+  } @else if ($direction == right) {
+    &::before,
+    &::after {
+      right: -$width / 4;
+    }
+
+    &::before {
+      transform: rotate(45deg) translateX(-1 * ($width / 4 - $height / 2));
+    }
+
+    &::after {
+      transform: rotate(-45deg) translateX(-1 * ($width / 4 - $height / 2));
+    }
+  } @else if ($direction == up) {
+    transform: rotate(90deg);
+
+    &::before,
+    &::after {
+      left: -$width / 4;
+    }
+
+    &::before {
+      transform: rotate(45deg) translateX($width / 4 - $height / 2);
+    }
+
+    &::after {
+      transform: rotate(-45deg) translateX($width / 4 - $height / 2);
+    }
+  } @else if ($direction == down) {
+    transform: rotate(90deg);
+
+    &::before,
+    &::after {
+      right: -$width / 4;
+    }
+
+    &::before {
+      transform: rotate(45deg) translateX(-1 * ($width / 4 - $height / 2));
+    }
+
+    &::after {
+      transform: rotate(-45deg) translateX(-1 * ($width / 4 - $height / 2));
+    }
+  }
+}

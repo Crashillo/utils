@@ -1,0 +1,27 @@
+$wSmall: 568px;
+$wMedium: 768px;
+$wLarge: 1024px;
+$wExtraLarge: 1280px;
+
+@mixin breakpoint($point) {
+  @if $point == sm {
+    @media (max-width: $wSmall) {
+      @content;
+    }
+  } @else
+  if $point == md {
+    @media (max-width: $wMedium) {
+      @content;
+    }
+  } @else
+  if $point == lg {
+    @media (max-width: $wLarge) {
+      @content;
+    }
+  } @else
+  if $point == xl {
+    @media (max-width: $wExtraLarge) {
+      @content;
+    }
+  }
+}

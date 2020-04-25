@@ -1,0 +1,37 @@
+/*
+Creates helper classes as: mt20, pb60i, ml35i, pr85....
+That is, margin-top: 20px; padding-bottom: -60px; margin-left: -35px; padding-right: 85px;
+*/
+@mixin padding($top, $right, $bottom, $left) {
+	padding: $top $right $bottom $left;
+}
+@mixin margin($top, $right, $bottom, $left) {
+	margin: $top $right $bottom $left;
+}
+@mixin offset-margin($margin, $value) {
+	margin-#{$margin}: $value;
+}
+@mixin offset-padding($margin, $value) {
+	padding-#{$margin}: $value;
+}
+// This generates margins/paddings from 5px to 100px; 5px each step
+@for $i from 1 through 20 {
+	$value: $i*5;
+	@each $margin in top, left, bottom, right {
+		.m#{str-slice($margin, 0, 1)}#{$value} {
+			@include offset-margin($margin, 1px * $value)
+		}
+
+		.m#{str-slice($margin, 0, 1)}#{$value}i {
+			@include offset-margin($margin, -1px * $value)
+		}
+
+		.p#{str-slice($margin, 0, 1)}#{$value} {
+			@include offset-padding($margin, 1px * $value)
+		}
+
+		.p#{str-slice($margin, 0, 1)}#{$value}i {
+			@include offset-padding($margin, -1px * $value)
+		}
+	}
+}

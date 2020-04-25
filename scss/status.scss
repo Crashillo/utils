@@ -1,0 +1,48 @@
+// Original vars (might be set in somewhere else)
+$success: #57d685 !default;
+$warning: #ffae00 !default;
+$alert: #ec5840 !default;
+$palette: (
+  success: $success,
+  warning: $warning,
+  error: $alert
+);
+
+// Status modifier mixin
+@mixin modifiers($vars, $colors: $palette) {
+  $map: map-merge($palette, $colors);
+
+  @each $key, $value in $map {
+   &.#{$key} {
+    @content;
+
+    @each $property in $vars {
+     #{$property}: map-get($map, $key);
+    }
+   }
+  }
+}
+
+// Examples
+
+/* Pass the color-property that it depends on the status */
+.simplest{
+  @include modifiers(border-color)
+}
+
+/* Add some static properties */
+.with_content {
+  @include modifiers(border-top-color) {
+    border-top-width: 8px;
+  }
+}
+
+/* Several properties may deal with the status */
+.multiple {
+  @include modifiers((border-top-color, border-bottom-color))
+}
+
+/* Status may be altered or added other than original values */
+.change_palette {
+  @include modifiers(color, (success: blue, muted: gray))
+}
