@@ -3,8 +3,10 @@
  * @param {Array} xs array element
  * @param {String|Function} key property, or callback function, to be grouped by.
  */
-export default function groupBy = (data, key) => data.reduce((acc, x) => {
-  const cat = key instanceof Function ? key(x) : x[key];
-  (acc[cat] = acc[cat] || []).push(x);
-  return acc;
-}, {});
+export default function groupBy(data, key) {
+  return data.reduce((acc, x) => {
+    const cat = key instanceof Function ? key(x) : x[key];
+    (acc[cat] = acc[cat] || []).push(x);
+    return acc;
+  }, {})
+};
