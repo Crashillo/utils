@@ -18,7 +18,7 @@ function handleTabClick({ target }, tabType) {
   }
 }
 
-function tabs() {
+export default function tabs() {
   const selectors = document.querySelectorAll("[data-tabs]")
   selectors.forEach(tabs => {
     tabs.addEventListener("click", e => handleTabClick(e, tabs.dataset.tabs))
