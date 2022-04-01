@@ -18,11 +18,11 @@
 const ACTIVE_CSS_CLASS = "is-selected"
 
 function getTabId(node) {
-  const { dataset: { tabId, tabContent }} = node || {}
+  const { dataset: { tabId, tabContent } = {}} = node || {}
   return tabId || tabContent
 }
 
-function handleTabClick({ target }, tabType) {
+function handleClick({ target }, tabType) {
   const parent = target.closest(`[data-tabs=${tabType}]`)
 
   if (parent) {
@@ -37,8 +37,8 @@ function handleTabClick({ target }, tabType) {
 
 export default function tabs() {
   const selectors = document.querySelectorAll("[data-tabs]")
-  selectors.forEach(tabs => {
-    tabs.addEventListener("click", e => handleTabClick(e, tabs.dataset.tabs))
-    tabs.addEventListener("pointerover", e => handleTabClick(e, tabs.dataset.tabs))
+  selectors.forEach(container => {
+    container.addEventListener("click", e => handleClick(e, container.dataset.tabs))
+    container.addEventListener("pointerover", e => handleClick(e, container.dataset.tabs))
   })
 }
