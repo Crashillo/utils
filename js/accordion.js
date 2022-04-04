@@ -1,7 +1,6 @@
 /**
- * Use [data-tabs] tag in some parent node relative of the tabs and their contents
- * Use [data-filter-id=UNIQUE_ID] tag in the tabs, setting the unique id
- * Use [data-filter-content=UNIQUE_ID] tag in content relative to the tab id
+ * Use [data-accordion] tag in the parent node of every element
+ * Use [data-accordion-id=UNIQUE_ID] tag in the items, setting an unique id
  *
  * @example
  * <div data-accordion>
