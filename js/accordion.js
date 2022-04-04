@@ -23,7 +23,7 @@ function handleAccordionClick({ target }) {
     const itemId = getAccordionId(item);
 
     [...accordion.children].forEach((node) =>
-      getAccordionId(node) === itemId
+      getAccordionId(node) === itemId && !node.classList.contains(ACTIVE_CSS_CLASS)
         ? node.classList.add(ACTIVE_CSS_CLASS)
         : node.classList.remove(ACTIVE_CSS_CLASS)
     );
