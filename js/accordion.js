@@ -30,9 +30,7 @@ function handleAccordionClick({ target }) {
   }
 }
 
-function accordion() {
+export default function accordion() {
   const selectors = document.querySelectorAll("[data-accordion]")
   selectors.forEach(container => container.addEventListener("click", handleAccordionClick))
 }
-
-accordion()
